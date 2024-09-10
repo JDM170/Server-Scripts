@@ -133,57 +133,57 @@ ECHO. 1>>  "%~dp0logs\serverstart.log" 2>&1
 >nul %MC_SYS32%\FIND.EXE /I "MAX_RAM=" "%~dp0settings.cfg" || (
     SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:MAX_RAM
     GOTO ERROR
-    )
+)
 
 >nul %MC_SYS32%\FIND.EXE /I "JAVA_ARGS=" "%~dp0settings.cfg" || (
     SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:JAVA_ARGS
     GOTO ERROR
-    )
+)
 
 >nul %MC_SYS32%\FIND.EXE /I "CRASH_COUNT=" "%~dp0settings.cfg" || (
     SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:CRASH_COUNT
     GOTO ERROR
-    )
+)
 
 >nul %MC_SYS32%\FIND.EXE /I "CRASH_TIMER=" "%~dp0settings.cfg" || (
     SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:CRASH_TIMER
     GOTO ERROR
-    )
+)
 
 >nul %MC_SYS32%\FIND.EXE /I "JAVA_PATH=" "%~dp0settings.cfg" || (
     SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:JAVA_PATH
     GOTO ERROR
-    )
+)
 
 >nul %MC_SYS32%\FIND.EXE /I "RUN_FROM_BAD_FOLDER=" "%~dp0settings.cfg" || (
     SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:RUN_FROM_BAD_FOLDER
     GOTO ERROR
-    )
+)
 
 >nul %MC_SYS32%\FIND.EXE /I "IGNORE_OFFLINE=" "%~dp0settings.cfg" || (
     SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:IGNORE_OFFLINE
     GOTO ERROR
-    )
+)
 
 >nul %MC_SYS32%\FIND.EXE /I "IGNORE_JAVA_CHECK=" "%~dp0settings.cfg" || (
     SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:IGNORE_JAVA_CHECK
     GOTO ERROR
-    )
+)
 
 >nul %MC_SYS32%\FIND.EXE /I "MCVER=" "%~dp0settings.cfg" || (
     SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:MCVER
     GOTO ERROR
-    )
+)
 
 >nul %MC_SYS32%\FIND.EXE /I "FORGEVER=" "%~dp0settings.cfg" || (
     SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:FORGEVER
     GOTO ERROR
-    )
+)
     
 >nul %MC_SYS32%\FIND.EXE /I "DEFAULT_WORLD_TYPE=" "%~dp0settings.cfg" || (
     SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:DEFAULT_WORLD_TYPE
     GOTO ERROR
-    )
+)
 
 REM  LOAD Settings from config
 ECHO INFO: Loading variables from settings.cfg 1>>  "%~dp0logs\serverstart.log" 2>&1 
@@ -195,8 +195,8 @@ for /F "delims=; tokens=1 eol=;" %%A in (settings.cfg) DO (
         REM Skipping Line without equals (blank or comments only)
     )
 )
-    REM Old way to parse settings--> broke if args had an "equals" (=) character
-    REM for /f "delims==; tokens=1,2 eol=;" %%G in (settings.cfg) do set %%G=%%H 
+REM Old way to parse settings--> broke if args had an "equals" (=) character
+REM for /f "delims==; tokens=1,2 eol=;" %%G in (settings.cfg) do set %%G=%%H 
 
 REM Define Xms (min heap) as Floor(MAX_RAM / 2)
 SET MC_SERVER_TMP_FLAG=
@@ -683,7 +683,7 @@ IF NOT EXIST "%~dp0eula.txt" (
     ECHO Could not find eula.txt, creating initial copy...
     ECHO INFO: eula.txt not found... populating default
     ECHO eula=false>>"%~dp0eula.txt"
-    )
+)
     
 ECHO.
 ECHO Installing Forge now, please wait...
@@ -805,7 +805,7 @@ REM Quick-check EULA before commencing full restarter logic
     ECHO.
     PAUSE
     GOTO STARTSERVER
-    )
+)
 
 ECHO ERROR: At %MC_SERVER_CRASH_YYYYMMDD%:%MC_SERVER_CRASH_HHMMSS% Server has stopped. 1>>  "%~dp0logs\serverstart.log" 2>&1
 ECHO At %MC_SERVER_CRASH_YYYYMMDD%:%MC_SERVER_CRASH_HHMMSS% Server has stopped.
@@ -861,7 +861,7 @@ IF %MC_SERVER_CRASH_COUNTER% GEQ %MC_SERVER_MAX_CRASH% (
     ECHO %MC_SERVER_CRASH_COUNTER% Crashes have been counted each within %MC_SERVER_CRASH_TIMER% seconds.
     >nul TIMEOUT 1
     GOTO ERROR
-    )
+)
 
 REM Still under threshold so lets increment and restart
 ECHO INFO: Last crash/startup was %MC_SERVER_TMP_FLAG%+ seconds ago 1>>  "%~dp0logs\serverstart.log" 2>&1
