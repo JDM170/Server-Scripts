@@ -163,32 +163,27 @@ ECHO. 1>>  "%~dp0logs\serverstart.log" 2>&1
 >nul %MC_SYS32%\FIND.EXE /I "IGNORE_OFFLINE=" "%~dp0settings.cfg" || (
 	SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:IGNORE_OFFLINE
 	GOTO ERROR
-	)	
+	)
 
 >nul %MC_SYS32%\FIND.EXE /I "IGNORE_JAVA_CHECK=" "%~dp0settings.cfg" || (
 	SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:IGNORE_JAVA_CHECK
 	GOTO ERROR
-	)	
+	)
 
 >nul %MC_SYS32%\FIND.EXE /I "MCVER=" "%~dp0settings.cfg" || (
 	SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:MCVER
 	GOTO ERROR
-	)	
+	)
 
 >nul %MC_SYS32%\FIND.EXE /I "FORGEVER=" "%~dp0settings.cfg" || (
 	SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:FORGEVER
 	GOTO ERROR
-	)	
-
->nul %MC_SYS32%\FIND.EXE /I "FORGEURL=" "%~dp0settings.cfg" || (
-	SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:FORGEURL
-	GOTO ERROR
-	)	
+	)
 	
 >nul %MC_SYS32%\FIND.EXE /I "DEFAULT_WORLD_TYPE=" "%~dp0settings.cfg" || (
 	SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:DEFAULT_WORLD_TYPE
 	GOTO ERROR
-	)	
+	)
 
 REM  LOAD Settings from config
 ECHO INFO: Loading variables from settings.cfg 1>>  "%~dp0logs\serverstart.log" 2>&1 
@@ -239,7 +234,7 @@ SET MC_SERVER_IGNORE_OFFLINE=%IGNORE_OFFLINE%
 SET MC_SERVER_IGNORE_JAVA=%IGNORE_JAVA_CHECK%
 SET MC_SERVER_MCVER=%MCVER%
 SET MC_SERVER_FORGEVER=%FORGEVER%
-SET MC_SERVER_FORGEURL=%FORGEURL%
+SET MC_SERVER_FORGEURL=https://files.minecraftforge.net/maven/net/minecraftforge/forge/%MC_SERVER_MCVER%-%MC_SERVER_FORGEVER%/forge-%MC_SERVER_MCVER%-%MC_SERVER_FORGEVER%-installer.jar
 SET MC_SERVER_SPONGE=%USE_SPONGE%
 SET MC_SERVER_HIGH_PRIORITY=%HIGH_CPU_PRIORITY%
 SET MC_SERVER_PACKNAME=%MODPACK_NAME%
@@ -251,11 +246,11 @@ SET FORGE_JAR=
 SET JAVA_ARGS=
 SET CRASH_COUNT=
 SET CRASH_TIMER=
+SET JAVA_PATH=
 SET RUN_FROM_BAD_FOLDER=
 SET IGNORE_OFFLINE=
 SET MCVER=
 SET FORGEVER=
-SET FORGEURL=
 SET USE_SPONGE=
 SET HIGH_CPU_PRIORITY=
 SET MODPACK_NAME=
@@ -480,9 +475,13 @@ ECHO INFO: Checking for forge/minecraft binaries... 1>>  "%~dp0logs\serverstart.
 
 REM Check if forge is already installed
 IF NOT EXIST "%~dp0*forge*%MC_SERVER_FORGEVER%*universal*.jar" (
-	ECHO FORGE %MC_SERVER_FORGEVER% binary not found, re-installing...
-	ECHO INFO: FORGE %MC_SERVER_FORGEVER% not found, re-installing... 1>>  "%~dp0logs\serverstart.log" 2>&1
-	GOTO INSTALLSTART
+    IF NOT EXIST "%~dp0*forge*%MC_SERVER_FORGEVER%.jar" (
+        ECHO FORGE %MC_SERVER_FORGEVER% binary not found, re-installing...
+        ECHO INFO: FORGE %MC_SERVER_FORGEVER% not found, re-installing... 1>>  "%~dp0logs\serverstart.log" 2>&1
+        GOTO INSTALLSTART
+    ) ELSE (
+        MOVE /Y "%~dp0forge-%MC_SERVER_MCVER%-%MC_SERVER_FORGEVER%.jar" "%~dp0forge-%MC_SERVER_MCVER%-%MC_SERVER_FORGEVER%-universal.jar"
+    )
 )
 
 REM Check if Minecraft JAR is already downloaded
@@ -630,7 +629,6 @@ IF %ERRORLEVEL% EQU 0 (
 )
 
 :FORGEFILEPREP
-DEL /F /Q "%~dp0*forge*.html"  1>> "%~dp0logs\serverstart.log" 2>&1 || ECHO INFO: No forge-index to delete 1>>  "%~dp0logs\serverstart.log" 2>&1
 DEL /F /Q "%~dp0*forge*universal*"  1>> "%~dp0logs\serverstart.log" 2>&1 || ECHO INFO: No forge-universal to delete 1>>  "%~dp0logs\serverstart.log" 2>&1
 DEL /F /Q "%~dp0*tmp-forgeinstaller.jar" 1>> "%~dp0logs\serverstart.log" 2>&1 || ECHO INFO: No forge-installer to delete 1>> "%~dp0logs\serverstart.log" 2>&1
 DEL /F /Q "%~dp0*minecraft*server*%MC_SERVER_MCVER%*.jar" 1>> "%~dp0logs\serverstart.log" 2>&1 || ECHO INFO: No minecraft binary to delete 1>> "%~dp0logs\serverstart.log" 2>&1
@@ -638,65 +636,8 @@ RMDIR /S /Q "%~dp0libraries" 1>>  "%~dp0logs\serverstart.log" 2>&1 || ECHO INFO:
 
 ECHO.
 ECHO.
-ECHO Downloading FORGE (step 1 of 2). This can take several minutes, please be patient...
+ECHO Downloading FORGE. This can take several minutes, please be patient...
 
-REM Check if direct forge URL is specified in config
-IF NOT %MC_SERVER_FORGEURL%==DISABLE (
-	ECHO Attempting to download "%MC_SERVER_FORGEURL%... this can take a moment, please wait." 
-	GOTO DOWNLOADINSTALLER
-)
-
-SET MC_SERVER_TMP_FLAG=0
-
-:FETCHHTML
-REM Download Forge Download Index HTML to parse the URL for the direct download
-ECHO INFO: Fetching index html from forge ^( https://files.minecraftforge.net/maven/net/minecraftforge/forge/index_%MC_SERVER_MCVER%.html ^) 1>>  "%~dp0logs\serverstart.log" 2>&1
-%MC_SYS32%\bitsadmin.exe /rawreturn /nowrap /transfer dlforgehtml /download /priority FOREGROUND "https://files.minecraftforge.net/maven/net/minecraftforge/forge/index_%MC_SERVER_MCVER%.html" "%~dp0forge-%MC_SERVER_MCVER%.html"  1>> "%~dp0logs\serverstart.log" 2>&1
-
-IF NOT EXIST "%~dp0forge-%MC_SERVER_MCVER%.html" (
-	IF "%MC_SERVER_TMP_FLAG%"=="0" (
-		ECHO Something went wrong, trying again...
-		SET MC_SERVER_TMP_FLAG=1
-		GOTO FETCHHTML
-	) ELSE (
-		SET MC_SERVER_ERROR_REASON=ForgeIndexNotFound
-		GOTO ERROR
-	)
-)
-
-REM Simple search for matching text to make sure we got the correct webpage/html (and not a 404, for example)
-REM ECHO DEBUG: Checking simple pattern match for forge ver to validate HTML... 1>>  "%~dp0logs\serverstart.log" 2>&1
-REM FIND /I "%MC_SERVER_FORGEVER%" forge-%MC_SERVER_MCVER%.html 1>> "%~dp0logs\serverstart.log" 2>&1 || (
-REM 	IF %MC_SERVER_TMP_FLAG% LEQ 0 (
-REM 		ECHO Something wrong with Forge download part 1 of 2
-REM 		ECHO Something wrong with Forge download part 1 of 2 1>>  "%~dp0logs\serverstart.log" 2>&1
-REM 		SET MC_SERVER_TMP_FLAG=1
-REM 		DEL /F /Q "%~dp0*forge-index.html"  1>> "%~dp0logs\serverstart.log" 2>&1 || ECHO INFO: No forge-index to delete 1>>  "%~dp0logs\serverstart.log" 2>&1
-REM 		GOTO FETCHHTML
-REM 	) ELSE (
-REM 		ECHO HTML Download failed a second time... stopping. 
-REM 		ECHO ERROR: HTML Download failed a second time... stopping. 1>>  "%~dp0logs\serverstart.log" 2>&1
-REM 		SET MC_SERVER_ERROR_REASON=ForgeDownloadURLNotFound
-REM 		GOTO ERROR
-REM 	)
-REM )
-
-REM More complex wannabe-regex (aka magic)
-FOR /f tokens^=^5^ delims^=^=^<^>^" %%G in ('%MC_SYS32%\FINDSTR.EXE /ir "https://files.minecraftforge.net/maven/net/minecraftforge/forge/%MC_SERVER_MCVER%-%MC_SERVER_FORGEVER%/forge-%MC_SERVER_MCVER%-%MC_SERVER_FORGEVER%-installer.jar" "%~dp0forge-%MC_SERVER_MCVER%.html"') DO SET MC_SERVER_FORGEURL=%%G & GOTO FETCHHTML1
-
-:FETCHHTML1
-IF "%MC_SERVER_FORGEURL%"=="%MC_SERVER_FORGEURL:installer.jar=%" (
-	IF "%MC_SERVER_TMP_FLAG%"=="0" (
-		ECHO Something went wrong, trying again...
-		SET MC_SERVER_TMP_FLAG=1
-		GOTO FETCHHTML
-	) ELSE (
-		SET MC_SERVER_ERROR_REASON=ForgeDownloadURLNotFound
-		GOTO ERROR
-	)
-) 
-
-ECHO Downloading FORGE (step 2 of 2). This can take several minutes, please be patient...
 SET MC_SERVER_TMP_FLAG=0
 
 :DOWNLOADINSTALLER
@@ -707,8 +648,8 @@ ECHO DEBUG: Attempting to download "%MC_SERVER_FORGEURL%" 1>> "%~dp0logs\servers
 REM Check that temp-download installer was downloaded
 IF NOT EXIST "%~dp0tmp-forgeinstaller.jar" (
 IF "%MC_SERVER_TMP_FLAG%"=="0" (
-		ECHO Something wrong with download 2 of 2 - FORGE installer, trying again... 
-		ECHO Something wrong with download 2 of 2 - FORGE installer, trying again...  1>>  "%~dp0logs\serverstart.log" 2>&1
+		ECHO Something wrong with download - FORGE installer, trying again... 
+		ECHO Something wrong with download - FORGE installer, trying again...  1>>  "%~dp0logs\serverstart.log" 2>&1
 		SET MC_SERVER_TMP_FLAG=1
 		GOTO DOWNLOADINSTALLER
 	) ELSE (
@@ -725,7 +666,6 @@ MOVE /Y "%~dp0tmp-forgeinstaller.jar" "forge-%MC_SERVER_MCVER%-%MC_SERVER_FORGEV
 ECHO Download complete.
 
 :RUNINSTALLER
-
 REM Create default server.properties and eula.txt files
 IF NOT EXIST "%~dp0server.properties" (
 	ECHO Could not find server.properties, creating initial copy...
@@ -754,7 +694,6 @@ REM TODO: CHECKS TO VALIDATE SUCCESSFUL INSTALL
 
 REM File cleanup
 DEL /F /Q "%~dp0tmp-forgeinstaller.jar"  1>>  "%~dp0logs\serverstart.log" 2>&1
-DEL /F /Q "%~dp0forge-%MC_SERVER_MCVER%.html"  1>>  "%~dp0logs\serverstart.log" 2>&1
 
 :INSTALLCOMPLETE
 COLOR 2F
