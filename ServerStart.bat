@@ -24,51 +24,51 @@
 :: based on a combination of the MIT license and a couple parts from Vaskii's 
 :: Botania/Psi license:
 
-	:: Copyright (c) 2017 All The Mods Team
+    :: Copyright (c) 2017 All The Mods Team
 
-	:: Permission is hereby granted, free of charge, to any person obtaining a copy
-	:: of this software and associated documentation files (the "Software"), to deal
-	:: in the Software without restriction, including without limitation the rights
-	:: to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-	:: copies of the Software, and to permit persons to whom the Software is
-	:: furnished to do so, subject to the following conditions:
+    :: Permission is hereby granted, free of charge, to any person obtaining a copy
+    :: of this software and associated documentation files (the "Software"), to deal
+    :: in the Software without restriction, including without limitation the rights
+    :: to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    :: copies of the Software, and to permit persons to whom the Software is
+    :: furnished to do so, subject to the following conditions:
 
-	:: You must give appropriate credit to the "All The Mods Team" as original 
-	:: creators for any parts of this Software being used. A link back to original 
-	:: content is optional but would be greatly appreciated. 
+    :: You must give appropriate credit to the "All The Mods Team" as original 
+    :: creators for any parts of this Software being used. A link back to original 
+    :: content is optional but would be greatly appreciated. 
 
-	:: It is forbidden to charge for access to the distribution of this Software or 
-	:: gain money through it. This includes any type of inline advertisement, such 
-	:: as url shorteners (adf.ly or otherwise) or ads. This also includes 
-	:: restricting any amount of access behind a paywall. Special permission is 
-	:: given to allow this Software to be bundled or distributed with projects on 
-	:: Curse.com, CurseForge.com or their related sub-domains and subsidiaries.
+    :: It is forbidden to charge for access to the distribution of this Software or 
+    :: gain money through it. This includes any type of inline advertisement, such 
+    :: as url shorteners (adf.ly or otherwise) or ads. This also includes 
+    :: restricting any amount of access behind a paywall. Special permission is 
+    :: given to allow this Software to be bundled or distributed with projects on 
+    :: Curse.com, CurseForge.com or their related sub-domains and subsidiaries.
 
-	:: Derivative works must be open source (have its source visible and allow for 
-	:: redistribution and modification).
+    :: Derivative works must be open source (have its source visible and allow for 
+    :: redistribution and modification).
 
-	:: The above copyright notice and conditions must be included in all copies or 
-	:: substantial portions of the Software, including derivative works and 
-	:: re-licensing thereof. 
+    :: The above copyright notice and conditions must be included in all copies or 
+    :: substantial portions of the Software, including derivative works and 
+    :: re-licensing thereof. 
 
 ::================================================================================::
 ::*** DISCLAIMERS ***::
 
-	:: "All The Mods Team" is not affiliated with "Mojang," "Oracle," 
-	:: "Curse," "Twitch," "Sponge," "Forge" or any other entity (or entity owning a 
-	:: referenced product) potentially mentioned in this document or relevant source 
-	:: code for this Software. The use of their names and/or trademarks is strictly 
-	:: circumstantial and assumed fair-use. All credit for their respective works, 
-	:: software, branding, copyrights and/or trademarks belongs entirely to them as 
-	:: original owners/licensers.
+    :: "All The Mods Team" is not affiliated with "Mojang," "Oracle," 
+    :: "Curse," "Twitch," "Sponge," "Forge" or any other entity (or entity owning a 
+    :: referenced product) potentially mentioned in this document or relevant source 
+    :: code for this Software. The use of their names and/or trademarks is strictly 
+    :: circumstantial and assumed fair-use. All credit for their respective works, 
+    :: software, branding, copyrights and/or trademarks belongs entirely to them as 
+    :: original owners/licensers.
 
-	:: THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-	:: IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-	:: FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-	:: AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-	:: LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-	:: OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-	:: SOFTWARE.
+    :: THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    :: IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    :: FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    :: AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    :: LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    :: OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    :: SOFTWARE.
 
 
 
@@ -122,8 +122,8 @@ COLOR 3F
 REM Check for config file
 ECHO INFO: Checking that settings.cfg exists 1>> "%~dp0logs\serverstart.log" 2>&1
 IF NOT EXIST "%~dp0settings.cfg" (
-	SET MC_SERVER_ERROR_REASON=Settings.cfg_Not_Found
-	GOTO ERROR
+    SET MC_SERVER_ERROR_REASON=Settings.cfg_Not_Found
+    GOTO ERROR
 )
 
 ECHO DEBUG: settings.cfg Found. Logging full contents below: 1>>  "%~dp0logs\serverstart.log" 2>&1
@@ -131,72 +131,72 @@ ECHO DEBUG: settings.cfg Found. Logging full contents below: 1>>  "%~dp0logs\ser
 ECHO. 1>>  "%~dp0logs\serverstart.log" 2>&1
 
 >nul %MC_SYS32%\FIND.EXE /I "MAX_RAM=" "%~dp0settings.cfg" || (
-	SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:MAX_RAM
-	GOTO ERROR
-	)
+    SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:MAX_RAM
+    GOTO ERROR
+    )
 
 >nul %MC_SYS32%\FIND.EXE /I "JAVA_ARGS=" "%~dp0settings.cfg" || (
-	SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:JAVA_ARGS
-	GOTO ERROR
-	)
+    SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:JAVA_ARGS
+    GOTO ERROR
+    )
 
 >nul %MC_SYS32%\FIND.EXE /I "CRASH_COUNT=" "%~dp0settings.cfg" || (
-	SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:CRASH_COUNT
-	GOTO ERROR
-	)
+    SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:CRASH_COUNT
+    GOTO ERROR
+    )
 
 >nul %MC_SYS32%\FIND.EXE /I "CRASH_TIMER=" "%~dp0settings.cfg" || (
-	SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:CRASH_TIMER
-	GOTO ERROR
-	)
+    SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:CRASH_TIMER
+    GOTO ERROR
+    )
 
 >nul %MC_SYS32%\FIND.EXE /I "JAVA_PATH=" "%~dp0settings.cfg" || (
-	SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:JAVA_PATH
-	GOTO ERROR
-	)
+    SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:JAVA_PATH
+    GOTO ERROR
+    )
 
 >nul %MC_SYS32%\FIND.EXE /I "RUN_FROM_BAD_FOLDER=" "%~dp0settings.cfg" || (
-	SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:RUN_FROM_BAD_FOLDER
-	GOTO ERROR
-	)
+    SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:RUN_FROM_BAD_FOLDER
+    GOTO ERROR
+    )
 
 >nul %MC_SYS32%\FIND.EXE /I "IGNORE_OFFLINE=" "%~dp0settings.cfg" || (
-	SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:IGNORE_OFFLINE
-	GOTO ERROR
-	)
+    SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:IGNORE_OFFLINE
+    GOTO ERROR
+    )
 
 >nul %MC_SYS32%\FIND.EXE /I "IGNORE_JAVA_CHECK=" "%~dp0settings.cfg" || (
-	SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:IGNORE_JAVA_CHECK
-	GOTO ERROR
-	)
+    SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:IGNORE_JAVA_CHECK
+    GOTO ERROR
+    )
 
 >nul %MC_SYS32%\FIND.EXE /I "MCVER=" "%~dp0settings.cfg" || (
-	SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:MCVER
-	GOTO ERROR
-	)
+    SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:MCVER
+    GOTO ERROR
+    )
 
 >nul %MC_SYS32%\FIND.EXE /I "FORGEVER=" "%~dp0settings.cfg" || (
-	SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:FORGEVER
-	GOTO ERROR
-	)
-	
+    SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:FORGEVER
+    GOTO ERROR
+    )
+    
 >nul %MC_SYS32%\FIND.EXE /I "DEFAULT_WORLD_TYPE=" "%~dp0settings.cfg" || (
-	SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:DEFAULT_WORLD_TYPE
-	GOTO ERROR
-	)
+    SET MC_SERVER_ERROR_REASON=Settings.cfg_Error:DEFAULT_WORLD_TYPE
+    GOTO ERROR
+    )
 
 REM  LOAD Settings from config
 ECHO INFO: Loading variables from settings.cfg 1>>  "%~dp0logs\serverstart.log" 2>&1 
 for /F "delims=; tokens=1 eol=;" %%A in (settings.cfg) DO (
-	REM Only process the line if it contains an "equals" sign
-	ECHO.%%A | findstr /C:"=">nul && (
-		CALL SET %%A
-	) || (
-		REM Skipping Line without equals (blank or comments only)
-	)
+    REM Only process the line if it contains an "equals" sign
+    ECHO.%%A | findstr /C:"=">nul && (
+        CALL SET %%A
+    ) || (
+        REM Skipping Line without equals (blank or comments only)
+    )
 )
-	REM Old way to parse settings--> broke if args had an "equals" (=) character
-	REM for /f "delims==; tokens=1,2 eol=;" %%G in (settings.cfg) do set %%G=%%H 
+    REM Old way to parse settings--> broke if args had an "equals" (=) character
+    REM for /f "delims==; tokens=1,2 eol=;" %%G in (settings.cfg) do set %%G=%%H 
 
 REM Define Xms (min heap) as Floor(MAX_RAM / 2)
 SET MC_SERVER_TMP_FLAG=
@@ -316,19 +316,19 @@ ECHO DEBUG: JAVA version output (java -d64 -version): 1>>  "%~dp0logs\serverstar
 
 %MC_SERVER_JAVA_PATH% -d64 -version 2>&1 | %MC_SYS32%\FIND.EXE "1.8"  1>>  "%~dp0logs\serverstart.log" 2>&1
 IF %ERRORLEVEL% EQU 0 (
-	ECHO INFO: Found 64-bit Java 1.8 1>> "%~dp0logs\serverstart.log" 2>&1
-	ECHO ...64-bit Java 1.8 found! 1>> "%~dp0logs\serverstart.log" 2>&1
-	GOTO CHECKFOLDER
+    ECHO INFO: Found 64-bit Java 1.8 1>> "%~dp0logs\serverstart.log" 2>&1
+    ECHO ...64-bit Java 1.8 found! 1>> "%~dp0logs\serverstart.log" 2>&1
+    GOTO CHECKFOLDER
 ) ELSE (
     GOTO JAVAERROR
 )
 
 :JAVAERROR
 IF NOT %MC_SERVER_IGNORE_JAVA% EQU 0 (
-	ECHO WARN: Skipping validation of proper Java install/version...
-	ECHO IF Java is not installed, too old, or not 64-bit, the server probably won't start/run correctly
-	ECHO WARN: Skipping validation of Java install... 1>>  "%~dp0logs\serverstart.log" 2>&1
-	GOTO CHECKFOLDER
+    ECHO WARN: Skipping validation of proper Java install/version...
+    ECHO IF Java is not installed, too old, or not 64-bit, the server probably won't start/run correctly
+    ECHO WARN: Skipping validation of Java install... 1>>  "%~dp0logs\serverstart.log" 2>&1
+    GOTO CHECKFOLDER
 )
 COLOR CF
 ECHO ERROR: Could not find 64-bit Java 1.8 installed or in PATH 1>> "%~dp0logs\serverstart.log" 2>&1
@@ -345,9 +345,9 @@ GOTO ERROR
 
 :CHECKFOLDER
 IF NOT %MC_SERVER_RUN_FROM_BAD_FOLDER% EQU 0 (
-	ECHO WARN: Skipping check if server directory is in potentially problematic location...
-	ECHO WARN: Skipping check if server directory is in potentially problematic location... 1>>  "%~dp0logs\serverstart.log" 2>&1
-	GOTO CHECKONLINE
+    ECHO WARN: Skipping check if server directory is in potentially problematic location...
+    ECHO WARN: Skipping check if server directory is in potentially problematic location... 1>>  "%~dp0logs\serverstart.log" 2>&1
+    GOTO CHECKONLINE
 )
 ECHO Checking if current folder is valid...
 ECHO INFO: Checking if current folder is valid... 1>>  "%~dp0logs\serverstart.log" 2>&1
@@ -357,26 +357,26 @@ IF NOT DEFINED ProgramFiles ( GOTO CHECKPROG86 )
 ECHO.x%CD%x | %MC_SYS32%\FINDSTR.EXE /I /C:"%ProgramFiles%" >nul
 REM ECHO Error Level: %ERRORLEVEL%
 IF %ERRORLEVEL% EQU 0 (
-	SET MC_SERVER_ERROR_REASON=BadFolder-ProgramFiles;
-	GOTO FOLDERERROR
+    SET MC_SERVER_ERROR_REASON=BadFolder-ProgramFiles;
+    GOTO FOLDERERROR
 )
 ECHO.x%~dp0x | %MC_SYS32%\FINDSTR.EXE /I /C:"%ProgramFiles%" >nul
 IF %ERRORLEVEL% EQU 0 (
-	SET MC_SERVER_ERROR_REASON=BadFolder-ProgramFiles;
-	GOTO FOLDERERROR
+    SET MC_SERVER_ERROR_REASON=BadFolder-ProgramFiles;
+    GOTO FOLDERERROR
 )
 
 :CHECKPROG86
 IF NOT DEFINED ProgramFiles^(x86^) ( GOTO CHECKSYS )
 ECHO.x%CD%x | %MC_SYS32%\FINDSTR.EXE /I /C:"%ProgramFiles(x86)%" >nul
 IF %ERRORLEVEL% EQU 0 (
-	SET MC_SERVER_ERROR_REASON=BadFolder-ProgramFiles86;
-	GOTO FOLDERERROR
+    SET MC_SERVER_ERROR_REASON=BadFolder-ProgramFiles86;
+    GOTO FOLDERERROR
 )
 ECHO.x%~dp0x | %MC_SYS32%\FINDSTR.EXE /I /C:"%ProgramFiles(x86)%" >nul
 IF %ERRORLEVEL% EQU 0 (
-	SET MC_SERVER_ERROR_REASON=BadFolder-ProgramFiles86;
-	GOTO FOLDERERROR
+    SET MC_SERVER_ERROR_REASON=BadFolder-ProgramFiles86;
+    GOTO FOLDERERROR
 )
 
 :CHECKSYS
@@ -384,13 +384,13 @@ REM Check if current directory is in SystemRoot
 IF NOT DEFINED SystemRoot ( GOTO CHECKTEMP )
 ECHO.x%CD%x | %MC_SYS32%\FINDSTR.EXE /I /C:"%SystemRoot%" >nul
 IF %ERRORLEVEL% EQU 0 (
-	SET MC_SERVER_ERROR_REASON=BadFolder-System;
-	GOTO FOLDERERROR
+    SET MC_SERVER_ERROR_REASON=BadFolder-System;
+    GOTO FOLDERERROR
 )
 ECHO.x%~dp0x | %MC_SYS32%\FINDSTR.EXE /I /C:"%SystemRoot%" >nul
 IF %ERRORLEVEL% EQU 0 (
-	SET MC_SERVER_ERROR_REASON=BadFolder-System;
-	GOTO FOLDERERROR
+    SET MC_SERVER_ERROR_REASON=BadFolder-System;
+    GOTO FOLDERERROR
 )
 
 :CHECKTEMP
@@ -398,27 +398,27 @@ REM Check if current directory is in TEMP
 IF NOT DEFINED TEMP ( GOTO CHECKTMP )
 ECHO.x%CD%x | %MC_SYS32%\FINDSTR.EXE /I /C:"%TEMP%" >nul
 IF %ERRORLEVEL% EQU 0 (
-	SET MC_SERVER_ERROR_REASON=BadFolder-Temp;
-	GOTO FOLDERERROR
+    SET MC_SERVER_ERROR_REASON=BadFolder-Temp;
+    GOTO FOLDERERROR
 )
 ECHO.x%~dp0x | %MC_SYS32%\FINDSTR.EXE /I /C:"%TEMP%" >nul
 IF %ERRORLEVEL% EQU 0 (
-	SET MC_SERVER_ERROR_REASON=BadFolder-Temp;
-	GOTO FOLDERERROR
+    SET MC_SERVER_ERROR_REASON=BadFolder-Temp;
+    GOTO FOLDERERROR
 )
 
 :CHECKTMP
 IF NOT DEFINED TMP ( GOTO CHECKONLINE )
-	ECHO.x%CD%x | %MC_SYS32%\FINDSTR.EXE /I /C:"%TMP%" >nul
-	IF %ERRORLEVEL% EQU 0 (
-		SET MC_SERVER_ERROR_REASON=BadFolder-Temp;
-		GOTO FOLDERERROR
-	)
-	ECHO.x%~dp0x | %MC_SYS32%\FINDSTR.EXE /I /C:"%TMP%" >nul
-	IF %ERRORLEVEL% EQU 0 (
-		SET MC_SERVER_ERROR_REASON=BadFolder-Temp;
-		GOTO FOLDERERROR
-	)
+    ECHO.x%CD%x | %MC_SYS32%\FINDSTR.EXE /I /C:"%TMP%" >nul
+    IF %ERRORLEVEL% EQU 0 (
+        SET MC_SERVER_ERROR_REASON=BadFolder-Temp;
+        GOTO FOLDERERROR
+    )
+    ECHO.x%~dp0x | %MC_SYS32%\FINDSTR.EXE /I /C:"%TMP%" >nul
+    IF %ERRORLEVEL% EQU 0 (
+        SET MC_SERVER_ERROR_REASON=BadFolder-Temp;
+        GOTO FOLDERERROR
+    )
 )
 GOTO CHECKONLINE
 
@@ -431,9 +431,9 @@ GOTO ERROR
 
 :CHECKONLINE
 IF NOT %MC_SERVER_IGNORE_OFFLINE% EQU 0 (
-	ECHO Skipping internet connectivity check...
-	ECHO WARN: Skipping internet connectivity check... 1>>  "%~dp0logs\serverstart.log" 2>&1
-	GOTO CHECKFILES
+    ECHO Skipping internet connectivity check...
+    ECHO WARN: Skipping internet connectivity check... 1>>  "%~dp0logs\serverstart.log" 2>&1
+    GOTO CHECKFILES
 )
 
 ECHO Checking for basic internet connectivity...
@@ -443,31 +443,31 @@ REM Try with Google DNS
 %MC_SYS32%\PING.EXE -n 2 -w 1000 8.8.8.8 | %MC_SYS32%\FIND.EXE "TTL="  1>>  "%~dp0logs\serverstart.log" 2>&1
 IF %ERRORLEVEL% EQU 0 (
     SET MC_SERVER_TMP_FLAG=0
-	ECHO INFO: Ping of "8.8.8.8" Successfull 1>>  "%~dp0logs\serverstart.log" 2>&1
+    ECHO INFO: Ping of "8.8.8.8" Successfull 1>>  "%~dp0logs\serverstart.log" 2>&1
 ) ELSE (
     SET MC_SERVER_TMP_FLAG=1
-	ECHO WARN: Ping of "8.8.8.8" Failed 1>>  "%~dp0logs\serverstart.log" 2>&1
+    ECHO WARN: Ping of "8.8.8.8" Failed 1>>  "%~dp0logs\serverstart.log" 2>&1
 )
 
 REM If Google ping failed try one more time with L3 just in case
 IF MC_SERVER_TMP_FLAG EQU 1 (
-	%MC_SYS32%\PING.EXE -n 2 -w 1000 4.2.2.1 | %MC_SYS32%\FIND.EXE "TTL="  1>>  "%~dp0logs\serverstart.log" 2>&1
-	IF %ERRORLEVEL% EQU 0 (
-		SET MC_SERVER_TMP_FLAG=0
-		INFO: Ping of "4.4.2.1" Successfull 1>>  "%~dp0logs\serverstart.log" 2>&1
-	) ELSE (
-		SET MC_SERVER_TMP_FLAG=1
-		ECHO WARN: Ping of "4.4.2.1" Failed 1>>  "%~dp0logs\serverstart.log" 2>&1
-	)
+    %MC_SYS32%\PING.EXE -n 2 -w 1000 4.2.2.1 | %MC_SYS32%\FIND.EXE "TTL="  1>>  "%~dp0logs\serverstart.log" 2>&1
+    IF %ERRORLEVEL% EQU 0 (
+        SET MC_SERVER_TMP_FLAG=0
+        INFO: Ping of "4.4.2.1" Successfull 1>>  "%~dp0logs\serverstart.log" 2>&1
+    ) ELSE (
+        SET MC_SERVER_TMP_FLAG=1
+        ECHO WARN: Ping of "4.4.2.1" Failed 1>>  "%~dp0logs\serverstart.log" 2>&1
+    )
 )
 
 REM Possibly no internet connection...
 IF MC_SERVER_TMP_FLAG EQU 1 (
-	ECHO ERROR: No internet connectivity found
-	ECHO ERROR: No internet connectivity found 1>>  "%~dp0logs\serverstart.log" 2>&1
-	SET MC_SERVER_ERROR_REASON=NoInternetConnectivity
-	GOTO ERROR
-	)
+    ECHO ERROR: No internet connectivity found
+    ECHO ERROR: No internet connectivity found 1>>  "%~dp0logs\serverstart.log" 2>&1
+    SET MC_SERVER_ERROR_REASON=NoInternetConnectivity
+    GOTO ERROR
+    )
 
 :CHECKFILES
 ECHO Checking for forge/minecraft binaries...
@@ -486,45 +486,45 @@ IF NOT EXIST "%~dp0*forge*%MC_SERVER_FORGEVER%*universal*.jar" (
 
 REM Check if Minecraft JAR is already downloaded
 IF NOT EXIST "%~dp0*minecraft_server.%MC_SERVER_MCVER%.jar" (
-	ECHO Minecraft binary not found, re-installing Forge...
-	ECHO INFO: Minecraft binary not found, re-installing Forge...  1>>  "%~dp0logs\serverstart.log" 2>&1
-	GOTO INSTALLSTART
+    ECHO Minecraft binary not found, re-installing Forge...
+    ECHO INFO: Minecraft binary not found, re-installing Forge...  1>>  "%~dp0logs\serverstart.log" 2>&1
+    GOTO INSTALLSTART
 )
 
 REM Check if Libraries are already downloaded
 IF NOT EXIST "%~dp0libraries" (
-	ECHO Libraries folder not found, re-installing Forge...
-	ECHO INFO: Libraries folder not found, re-installing Forge... 1>>  "%~dp0logs\serverstart.log" 2>&1
-	GOTO INSTALLSTART
+    ECHO Libraries folder not found, re-installing Forge...
+    ECHO INFO: Libraries folder not found, re-installing Forge... 1>>  "%~dp0logs\serverstart.log" 2>&1
+    GOTO INSTALLSTART
 )
 
 REM Sponge?
 IF %MC_SERVER_SPONGE% EQU 1 (
-	ECHO.
-	ECHO. **** WARNING ****
-	ECHO SPONGE has been enabled in settings.cfg
-	ECHO Using Sponge with this modpack is experimental and can cause unexpected problems
-	ECHO **** USE SPONGE AT YOUR OWN RISK ****
-	ECHO SPONGE has been enabled in settings.cfg -- this is experimental and can cause unexpected problems USE AT YOUR OWN RISK  1>>  "%~dp0logs\serverstart.log" 2>&1
-	ECHO.
-	REM create "/mods/" folder if it doesn't exist
-	IF NOT EXIST "%~dp0mods" (
-		ECHO Mods folder not found, creating it
-		ECHO INFO: Mods folder not found, creating it 1>>  "%~dp0logs\serverstart.log" 2>&1
-		MKDIR "%~dp0mods" 1>>  "%~dp0logs\serverstart.log" 2>&1
-	)
-	REM Check for spongeforge jar in /mods/
-	IF NOT EXIST "%~dp0mods/*spongeforge*%MC_SERVER_MCVER%*.jar" (
-		ECHO SpongeForge JAR for not found in "mods" folder...
-		ECHO INFO: SpongeForge JAR not found in "mods" folder  1>>  "%~dp0logs\serverstart.log" 2>&1
-		GOTO DOWNLOADSPONGE
-	)
-	REM Check for spongeforge bootstrapper
-REM	IF NOT EXIST "%~dp0*sponge*bootstrap*.jar" (
-REM		ECHO SpongeBootstrap loader not found...
-REM		ECHO INFO: SpongeForge Bootstrap loader not found 1>>  "%~dp0logs\serverstart.log" 2>&1
-REM		GOTO DOWNLOADSPONGE
-REM	)	
+    ECHO.
+    ECHO. **** WARNING ****
+    ECHO SPONGE has been enabled in settings.cfg
+    ECHO Using Sponge with this modpack is experimental and can cause unexpected problems
+    ECHO **** USE SPONGE AT YOUR OWN RISK ****
+    ECHO SPONGE has been enabled in settings.cfg -- this is experimental and can cause unexpected problems USE AT YOUR OWN RISK  1>>  "%~dp0logs\serverstart.log" 2>&1
+    ECHO.
+    REM create "/mods/" folder if it doesn't exist
+    IF NOT EXIST "%~dp0mods" (
+        ECHO Mods folder not found, creating it
+        ECHO INFO: Mods folder not found, creating it 1>>  "%~dp0logs\serverstart.log" 2>&1
+        MKDIR "%~dp0mods" 1>>  "%~dp0logs\serverstart.log" 2>&1
+    )
+    REM Check for spongeforge jar in /mods/
+    IF NOT EXIST "%~dp0mods/*spongeforge*%MC_SERVER_MCVER%*.jar" (
+        ECHO SpongeForge JAR for not found in "mods" folder...
+        ECHO INFO: SpongeForge JAR not found in "mods" folder  1>>  "%~dp0logs\serverstart.log" 2>&1
+        GOTO DOWNLOADSPONGE
+    )
+    REM Check for spongeforge bootstrapper
+REM IF NOT EXIST "%~dp0*sponge*bootstrap*.jar" (
+REM     ECHO SpongeBootstrap loader not found...
+REM     ECHO INFO: SpongeForge Bootstrap loader not found 1>>  "%~dp0logs\serverstart.log" 2>&1
+REM     GOTO DOWNLOADSPONGE
+REM )   
 )
 
 REM set absolute paths for binary JARs
@@ -556,25 +556,25 @@ COLOR 07
 
 REM Batch will wait here indefinitely while MC server is running
 IF %MC_SERVER_SPONGE% EQU 1 (
-	ECHO DEBUG: Attempting to execute [ java %MC_SERVER_JVM_ARGS% -jar "%~dp0%MC_SERVER_SPONGE_BOOT%" nogui ]
-	ECHO DEBUG: Attempting to execute [ java %MC_SERVER_JVM_ARGS% -jar "%~dp0%MC_SERVER_SPONGE_BOOT%" nogui ] 1>> "%~dp0logs\serverstart.log" 2>&1
-	COLOR 
-	IF %MC_SERVER_HIGH_PRIORITY% EQU 1 (
-		START /B /I /WAIT /HIGH %MC_SERVER_JAVA_PATH% %MC_SERVER_JVM_ARGS% -jar "%~dp0%MC_SERVER_SPONGE_BOOT%" nogui
-	) ELSE (
-		%MC_SERVER_JAVA_PATH% %MC_SERVER_JVM_ARGS% -jar "%~dp0%MC_SERVER_SPONGE_BOOT%" nogui
-	)
+    ECHO DEBUG: Attempting to execute [ java %MC_SERVER_JVM_ARGS% -jar "%~dp0%MC_SERVER_SPONGE_BOOT%" nogui ]
+    ECHO DEBUG: Attempting to execute [ java %MC_SERVER_JVM_ARGS% -jar "%~dp0%MC_SERVER_SPONGE_BOOT%" nogui ] 1>> "%~dp0logs\serverstart.log" 2>&1
+    COLOR 
+    IF %MC_SERVER_HIGH_PRIORITY% EQU 1 (
+        START /B /I /WAIT /HIGH %MC_SERVER_JAVA_PATH% %MC_SERVER_JVM_ARGS% -jar "%~dp0%MC_SERVER_SPONGE_BOOT%" nogui
+    ) ELSE (
+        %MC_SERVER_JAVA_PATH% %MC_SERVER_JVM_ARGS% -jar "%~dp0%MC_SERVER_SPONGE_BOOT%" nogui
+    )
 ) ELSE (
-	ECHO DEBUG: Disabling any spongeforge jar in \mods\ because USE_SPONGE is disabled in settings.cfg 1>> "%~dp0logs\serverstart.log" 2>&1
-	(FOR /f "tokens=* delims=*" %%x in ('dir "%~dp0mods\*spongeforge*.jar" /B /O:-D') DO MOVE /Y "%~dp0mods\%%x" "%%x.disabled") 1>> "%~dp0logs\serverstart.log" 2>&1
-	ECHO DEBUG: Attempting to execute [ java %MC_SERVER_JVM_ARGS% -jar "%~dp0%MC_SERVER_FORGE_JAR%" nogui ]
-	ECHO DEBUG: Attempting to execute [ java %MC_SERVER_JVM_ARGS% -jar "%~dp0%MC_SERVER_FORGE_JAR%" nogui ] 1>> "%~dp0logs\serverstart.log" 2>&1
-	COLOR 
-	IF %MC_SERVER_HIGH_PRIORITY% EQU 1 (
-		START /B /I /WAIT /HIGH %MC_SERVER_JAVA_PATH% %MC_SERVER_JVM_ARGS% -jar "%~dp0%MC_SERVER_FORGE_JAR%" nogui
-	) ELSE (
-		%MC_SERVER_JAVA_PATH% %MC_SERVER_JVM_ARGS% -jar "%~dp0%MC_SERVER_FORGE_JAR%" nogui
-	)
+    ECHO DEBUG: Disabling any spongeforge jar in \mods\ because USE_SPONGE is disabled in settings.cfg 1>> "%~dp0logs\serverstart.log" 2>&1
+    (FOR /f "tokens=* delims=*" %%x in ('dir "%~dp0mods\*spongeforge*.jar" /B /O:-D') DO MOVE /Y "%~dp0mods\%%x" "%%x.disabled") 1>> "%~dp0logs\serverstart.log" 2>&1
+    ECHO DEBUG: Attempting to execute [ java %MC_SERVER_JVM_ARGS% -jar "%~dp0%MC_SERVER_FORGE_JAR%" nogui ]
+    ECHO DEBUG: Attempting to execute [ java %MC_SERVER_JVM_ARGS% -jar "%~dp0%MC_SERVER_FORGE_JAR%" nogui ] 1>> "%~dp0logs\serverstart.log" 2>&1
+    COLOR 
+    IF %MC_SERVER_HIGH_PRIORITY% EQU 1 (
+        START /B /I /WAIT /HIGH %MC_SERVER_JAVA_PATH% %MC_SERVER_JVM_ARGS% -jar "%~dp0%MC_SERVER_FORGE_JAR%" nogui
+    ) ELSE (
+        %MC_SERVER_JAVA_PATH% %MC_SERVER_JVM_ARGS% -jar "%~dp0%MC_SERVER_FORGE_JAR%" nogui
+    )
 )
 
 REM If server is exited or crashes, restart...
@@ -604,28 +604,28 @@ SET MC_SERVER_TMP_FLAG= 1>> "%~dp0logs\serverstart.log" 2>&1
 
 REM Check for existing/included forge-installer and run it instead of downloading
 IF EXIST "%~dp0forge-%MC_SERVER_MCVER%-%MC_SERVER_FORGEVER%-installer.jar" (
-	ECHO.
-	ECHO.
-	ECHO Existing forge installer already found...
-	ECHO Default is to use this installer and not re-download
-	GOTO RUNINSTALLER
+    ECHO.
+    ECHO.
+    ECHO Existing forge installer already found...
+    ECHO Default is to use this installer and not re-download
+    GOTO RUNINSTALLER
 )
 
 IF NOT %MC_SERVER_IGNORE_OFFLINE% EQU 0 (
-	ECHO Skipping forge server online check...
-	ECHO WARN: Skipping forge server online check... 1>>  "%~dp0logs\serverstart.log" 2>&1
-	GOTO FORGEFILEPREP
+    ECHO Skipping forge server online check...
+    ECHO WARN: Skipping forge server online check... 1>>  "%~dp0logs\serverstart.log" 2>&1
+    GOTO FORGEFILEPREP
 )
 
 REM Ping minecraftforge before attempting download
 %MC_SYS32%\PING.EXE -n 2 -w 1000 minecraftforge.net | %MC_SYS32%\FIND.EXE "TTL="  1>> "%~dp0logs\serverstart.log" 2>&1
 IF %ERRORLEVEL% EQU 0 (
-	ECHO INFO: Ping of "minecraftforge.net" Successfull 1>>  "%~dp0logs\serverstart.log" 2>&1
+    ECHO INFO: Ping of "minecraftforge.net" Successfull 1>>  "%~dp0logs\serverstart.log" 2>&1
 ) ELSE (
-	ECHO ERROR: Could not reach minecraftforge.net! Possible firewall or internet issue?
-	ECHO ERROR: Could not reach minecraftforge.net 1>>  "%~dp0logs\serverstart.log" 2>&1
-	SET MC_SERVER_ERROR_REASON=NoInternetConnectivityMinecraftForgeNet
-	GOTO ERROR
+    ECHO ERROR: Could not reach minecraftforge.net! Possible firewall or internet issue?
+    ECHO ERROR: Could not reach minecraftforge.net 1>>  "%~dp0logs\serverstart.log" 2>&1
+    SET MC_SERVER_ERROR_REASON=NoInternetConnectivityMinecraftForgeNet
+    GOTO ERROR
 )
 
 :FORGEFILEPREP
@@ -648,16 +648,16 @@ ECHO DEBUG: Attempting to download "%MC_SERVER_FORGEURL%" 1>> "%~dp0logs\servers
 REM Check that temp-download installer was downloaded
 IF NOT EXIST "%~dp0tmp-forgeinstaller.jar" (
 IF "%MC_SERVER_TMP_FLAG%"=="0" (
-		ECHO Something wrong with download - FORGE installer, trying again... 
-		ECHO Something wrong with download - FORGE installer, trying again...  1>>  "%~dp0logs\serverstart.log" 2>&1
-		SET MC_SERVER_TMP_FLAG=1
-		GOTO DOWNLOADINSTALLER
-	) ELSE (
-		ECHO FORGE Installer download failed a second time... stopping. 
-		ECHO ERROR: FORGE Installer download failed a second time... stopping. 1>>  "%~dp0logs\serverstart.log" 2>&1
-		SET MC_SERVER_ERROR_REASON=ForgeInstallerDownloadFailed
-		GOTO ERROR
-	)
+        ECHO Something wrong with download - FORGE installer, trying again... 
+        ECHO Something wrong with download - FORGE installer, trying again...  1>>  "%~dp0logs\serverstart.log" 2>&1
+        SET MC_SERVER_TMP_FLAG=1
+        GOTO DOWNLOADINSTALLER
+    ) ELSE (
+        ECHO FORGE Installer download failed a second time... stopping. 
+        ECHO ERROR: FORGE Installer download failed a second time... stopping. 1>>  "%~dp0logs\serverstart.log" 2>&1
+        SET MC_SERVER_ERROR_REASON=ForgeInstallerDownloadFailed
+        GOTO ERROR
+    )
 )
 
 REM Rename temp installer to proper installer, replacing one that was there already
@@ -668,23 +668,23 @@ ECHO Download complete.
 :RUNINSTALLER
 REM Create default server.properties and eula.txt files
 IF NOT EXIST "%~dp0server.properties" (
-	ECHO Could not find server.properties, creating initial copy...
-	ECHO INFO: server.properties not found... populating default
-		(
-			ECHO view-distance=8
-			ECHO allow-flight=true
-			ECHO level-type=%MC_SERVER_WORLDTYPE%
-			ECHO snooper-enabled=false
-			ECHO max-tick-time=90000
-			ECHO motd=%MC_SERVER_PACKNAME%
-		) >"%~dp0server.properties"
-	)
+    ECHO Could not find server.properties, creating initial copy...
+    ECHO INFO: server.properties not found... populating default
+        (
+            ECHO view-distance=8
+            ECHO allow-flight=true
+            ECHO level-type=%MC_SERVER_WORLDTYPE%
+            ECHO snooper-enabled=false
+            ECHO max-tick-time=90000
+            ECHO motd=%MC_SERVER_PACKNAME%
+        ) >"%~dp0server.properties"
+    )
 IF NOT EXIST "%~dp0eula.txt" (
-	ECHO Could not find eula.txt, creating initial copy...
-	ECHO INFO: eula.txt not found... populating default
-	ECHO eula=false>>"%~dp0eula.txt"
-	)
-	
+    ECHO Could not find eula.txt, creating initial copy...
+    ECHO INFO: eula.txt not found... populating default
+    ECHO eula=false>>"%~dp0eula.txt"
+    )
+    
 ECHO.
 ECHO Installing Forge now, please wait...
 ECHO INFO: Starting Forge install now, details below: 1>>  "%~dp0logs\serverstart.log" 2>&1
@@ -709,14 +709,14 @@ ECHO Download/Install of Forge and Minecraft binaries was sucessful.
 ECHO.
 >nul TIMEOUT 3
 IF /i "%1"=="install" (
-	ECHO "install" parameter was passed to script now exiting without starting the server...
-	ECHO You can use this same script without the "install" parameter to run the server files or 
-	ECHO by manually starting the forge JAR with Java or uploading to your hosting service
-	ECHO WARN: "install" paremeter passed to script, exiting after install and NOT starting server 1>>  "%~dp0logs\serverstart.log" 2>&1
-	ECHO.
-	GOTO CLEANUP
+    ECHO "install" parameter was passed to script now exiting without starting the server...
+    ECHO You can use this same script without the "install" parameter to run the server files or 
+    ECHO by manually starting the forge JAR with Java or uploading to your hosting service
+    ECHO WARN: "install" paremeter passed to script, exiting after install and NOT starting server 1>>  "%~dp0logs\serverstart.log" 2>&1
+    ECHO.
+    GOTO CLEANUP
 ) ELSE (
-	GOTO BEGIN
+    GOTO BEGIN
 )
 
 :DOWNLOADSPONGE
@@ -733,12 +733,12 @@ REM ---Download sponge bootstrap html to parse for jar download
 REM bitsadmin /rawreturn /nowrap /transfer dlspongebootstrap /download /priority FOREGROUND "https://api.github.com/repos/simon816/spongebootstrap/releases/latest" "%~dp0spongebootstrap.html"  1>> "%~dp0logs\serverstart.log" 2>&1
 REM ---Find latest bootstrap download and save to var
 REM FOR /f tokens^=* delims^=^" %%F in ('findstr /ir "https:\/\/github.*releases.*Bootstrap.*\.jar" "%~dp0spongebootstrap.html"') DO (
-REM 	SET "MC_SERVER_SPONGEBOOTSTRAPURL=%%F"
-REM 	FOR /f tokens^=^30 delims^=^/ %%B in ("%%G") DO ECHO Bootstrap Filename: %%B
+REM     SET "MC_SERVER_SPONGEBOOTSTRAPURL=%%F"
+REM     FOR /f tokens^=^30 delims^=^/ %%B in ("%%G") DO ECHO Bootstrap Filename: %%B
 REM ---Find latest SpongeForge download and save to var http://files.minecraftforge.net/maven/org/spongepowered/spongeforge/1.10.2-2281-5.2.0-BETA-2274/spongeforge-1.10.2-2281-5.2.0-BETA-2274.jar
 REM FOR /f tokens^=* delims^=^" %%G in ('findstr /ir "https:\/\/files.*%MC_SERVER_MCVER%.*%MC_SERVER_FORGESHORT%.*[0-9]*\.jar" "%~dp0spongeforge-%MC_SERVER_MCVER%.html"') DO (
-REM 	SET "MC_SERVER_SPONGEURL=%%G"
-REM 	FOR /f tokens^=^30 delims^=^/ %%S in ("%%G") DO ECHO SpongeForge Filename: %%S
+REM     SET "MC_SERVER_SPONGEURL=%%G"
+REM     FOR /f tokens^=^30 delims^=^/ %%S in ("%%G") DO ECHO SpongeForge Filename: %%S
 REM )
 REM ECHO DEBUG: Attempting to download "%MC_SERVER_SPONGEBOOTSTRAPURL%" 1>> "%~dp0logs\serverstart.log" 2>&1
 REM bitsadmin /rawreturn /nowrap /transfer dlforgeinstaller /download /priority FOREGROUND %MC_SERVER_SPONGEBOOTSTRAPURL% "%~dp0%%B"  1>>  "%~dp0logs\serverstart.log" 2>&1
@@ -797,15 +797,15 @@ GOTO CLEANUP
 COLOR 6F
 REM Quick-check EULA before commencing full restarter logic
 >nul %MC_SYS32%\FIND.EXE /I "eula=true" "%~dp0eula.txt" || (
-	TITLE ERROR: EULA.TXT Must be updated before %MC_SERVER_PACKNAME% server can start
-	CLS
-	ECHO.
-	ECHO Could not find "eula=true" in eula.txt file
-	ECHO Please edit and save the EULA file before continuing.
-	ECHO.
-	PAUSE
-	GOTO STARTSERVER
-	)
+    TITLE ERROR: EULA.TXT Must be updated before %MC_SERVER_PACKNAME% server can start
+    CLS
+    ECHO.
+    ECHO Could not find "eula=true" in eula.txt file
+    ECHO Please edit and save the EULA file before continuing.
+    ECHO.
+    PAUSE
+    GOTO STARTSERVER
+    )
 
 ECHO ERROR: At %MC_SERVER_CRASH_YYYYMMDD%:%MC_SERVER_CRASH_HHMMSS% Server has stopped. 1>>  "%~dp0logs\serverstart.log" 2>&1
 ECHO At %MC_SERVER_CRASH_YYYYMMDD%:%MC_SERVER_CRASH_HHMMSS% Server has stopped.
@@ -821,47 +821,47 @@ REM If more than one calendar day, reset timer/counter.
 REM Yes, this means over midnight it's not accurate.
 REM Nobody's perfect.
 IF %MC_SERVER_TMP_FLAG% GTR 0 (
-	ECHO More than one day since last crash/restart... resetting counter/timer
-	ECHO INFO: More than one day since last crash/restart... resetting counter/timer 1>>  "%~dp0logs\serverstart.log" 2>&1
-	SET MC_SERVER_CRASH_YYYYMMDD=%date:~10,4%%date:~4,2%%date:~7,2%
-	SET MC_SERVER_CRASH_HHMMSS=%time:~0,2%%time:~3,2%%time:~6,2%
-	SET MC_SERVER_CRASH_COUNTER=0
-	GOTO BEGIN
+    ECHO More than one day since last crash/restart... resetting counter/timer
+    ECHO INFO: More than one day since last crash/restart... resetting counter/timer 1>>  "%~dp0logs\serverstart.log" 2>&1
+    SET MC_SERVER_CRASH_YYYYMMDD=%date:~10,4%%date:~4,2%%date:~7,2%
+    SET MC_SERVER_CRASH_HHMMSS=%time:~0,2%%time:~3,2%%time:~6,2%
+    SET MC_SERVER_CRASH_COUNTER=0
+    GOTO BEGIN
 )
 
 REM Arithmetic to check SECONDS since last crash
 SET /a MC_SERVER_TMP_FLAG="%time:~0,2%%time:~3,2%%time:~6,2%-%MC_SERVER_CRASH_HHMMSS%"
 
-REM If more than specified seconds (from config variable), reset timer/counter.	
+REM If more than specified seconds (from config variable), reset timer/counter. 
 IF %MC_SERVER_TMP_FLAG% GTR %MC_SERVER_CRASH_TIMER% (
-	ECHO Last crash/startup was %MC_SERVER_TMP_FLAG%+ seconds ago
-	ECHO INFO: Last crash/startup was %MC_SERVER_TMP_FLAG%+ seconds ago 1>>  "%~dp0logs\serverstart.log" 2>&1
-	ECHO More than %MC_SERVER_CRASH_TIMER% seconds since last crash/restart... resetting counter/timer
-	ECHO INFO: More than %MC_SERVER_CRASH_TIMER% seconds since last crash/restart... resetting counter/timer 1>>  "%~dp0logs\serverstart.log" 2>&1
-	SET MC_SERVER_CRASH_YYYYMMDD=%date:~10,4%%date:~4,2%%date:~7,2%
-	SET MC_SERVER_CRASH_HHMMSS=%time:~0,2%%time:~3,2%%time:~6,2%
-	SET MC_SERVER_CRASH_COUNTER=0
-	REM GOTO BEGIN
+    ECHO Last crash/startup was %MC_SERVER_TMP_FLAG%+ seconds ago
+    ECHO INFO: Last crash/startup was %MC_SERVER_TMP_FLAG%+ seconds ago 1>>  "%~dp0logs\serverstart.log" 2>&1
+    ECHO More than %MC_SERVER_CRASH_TIMER% seconds since last crash/restart... resetting counter/timer
+    ECHO INFO: More than %MC_SERVER_CRASH_TIMER% seconds since last crash/restart... resetting counter/timer 1>>  "%~dp0logs\serverstart.log" 2>&1
+    SET MC_SERVER_CRASH_YYYYMMDD=%date:~10,4%%date:~4,2%%date:~7,2%
+    SET MC_SERVER_CRASH_HHMMSS=%time:~0,2%%time:~3,2%%time:~6,2%
+    SET MC_SERVER_CRASH_COUNTER=0
+    REM GOTO BEGIN
 )
 
 REM If we are still here, time difference is within threshold to increment counter
 REM Check if already max failures:
 IF %MC_SERVER_CRASH_COUNTER% GEQ %MC_SERVER_MAX_CRASH% (
-	COLOR cf
-	SET MC_SERVER_ERROR_REASON=TooManyCrashes:%MC_SERVER_CRASH_COUNTER%
-	ECHO INFO: Last crash/startup was %MC_SERVER_TMP_FLAG%+ seconds ago 1>>  "%~dp0logs\serverstart.log" 2>&1
-	ECHO.
-	ECHO.
-	ECHO ===================================================
-	ECHO  ERROR: Server has stopped/crashed too many times!
-	ECHO ===================================================
-	ECHO ERROR: Server has stopped/crashed too many times! 1>>  "%~dp0logs\serverstart.log" 2>&1
-	ECHO.
-	>nul TIMEOUT 1
-	ECHO %MC_SERVER_CRASH_COUNTER% Crashes have been counted each within %MC_SERVER_CRASH_TIMER% seconds.
-	>nul TIMEOUT 1
-	GOTO ERROR
-	)
+    COLOR cf
+    SET MC_SERVER_ERROR_REASON=TooManyCrashes:%MC_SERVER_CRASH_COUNTER%
+    ECHO INFO: Last crash/startup was %MC_SERVER_TMP_FLAG%+ seconds ago 1>>  "%~dp0logs\serverstart.log" 2>&1
+    ECHO.
+    ECHO.
+    ECHO ===================================================
+    ECHO  ERROR: Server has stopped/crashed too many times!
+    ECHO ===================================================
+    ECHO ERROR: Server has stopped/crashed too many times! 1>>  "%~dp0logs\serverstart.log" 2>&1
+    ECHO.
+    >nul TIMEOUT 1
+    ECHO %MC_SERVER_CRASH_COUNTER% Crashes have been counted each within %MC_SERVER_CRASH_TIMER% seconds.
+    >nul TIMEOUT 1
+    GOTO ERROR
+    )
 
 REM Still under threshold so lets increment and restart
 ECHO INFO: Last crash/startup was %MC_SERVER_TMP_FLAG%+ seconds ago 1>>  "%~dp0logs\serverstart.log" 2>&1
@@ -877,10 +877,10 @@ ECHO.
 ECHO Server will re-start *automatically* in less than 30 seconds...
 CHOICE /M:"Restart now (Y) or Exit (N)" /T:30 /D:Y
 IF %ERRORLEVEL% GEQ 2 (
-	ECHO INFO: Server manually stopped before auto-restart 1>>  "%~dp0logs\serverstart.log" 2>&1
-	GOTO CLEANUP
+    ECHO INFO: Server manually stopped before auto-restart 1>>  "%~dp0logs\serverstart.log" 2>&1
+    GOTO CLEANUP
 ) ELSE ( 
-	GOTO BEGIN
+    GOTO BEGIN
 )
 
 :CLEANUP
